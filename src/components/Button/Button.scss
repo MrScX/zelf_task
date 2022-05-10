@@ -1,0 +1,38 @@
+.Button {
+
+	button {
+		outline: none;
+		border: none;
+		background: none;
+		cursor: pointer;
+		font-weight: 500;
+		font-size: 15px;
+		font-family: "Outfit", sans-serif;
+	}
+
+	&--primary {
+		button {
+			color: #fff;
+			background: #3354ff;
+			padding: 10px 20px;
+			border-radius: 2px;
+			transition: all 0.2s;
+
+			&:hover {
+				background: darken($color: #3354ff, $amount: 5);
+			}
+		}
+	}
+
+	&--text {
+		button {
+			color: #000;
+			transition: all 0.2s;
+			color: #3354ff;
+
+			&:hover {
+				color: darken($color: #3354ff, $amount: 5);
+			}
+		}
+	}
+}

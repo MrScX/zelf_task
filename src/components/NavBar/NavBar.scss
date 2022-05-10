@@ -1,0 +1,63 @@
+.NavBar--root {
+	border-bottom: 1px solid #F1F2F3;
+}
+
+.NavBar {
+	display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 12px 0px;
+
+	&--left {
+		display: flex;
+		align-items: center;
+		flex: 1;
+
+		&__search {
+			width: 80%;
+		}
+	}
+
+	&--right {
+		display: flex;
+		align-items: center;
+		justify-content: flex-end;
+		flex: 1;
+
+		&__links, &__buttons {
+			display: flex;
+			align-items: center;
+			justify-content: flex-end;
+		}
+
+		&__links {
+			margin-right: 50px;
+
+			&--item:not(:last-child) {
+				margin-right: 32px;
+			}
+
+			&--item {
+
+				a {
+					font-weight: 500;
+					font-size: 15px;
+					color: #000;
+					text-decoration: none;
+					transition: all 0.2s;
+
+					&:hover {
+						color: #3354ff;
+					}
+				}
+			}
+		}
+
+		&__buttons {
+			&--item:not(:last-child) {
+				margin-right: 20px;
+			}
+		}
+
+	}
+}
