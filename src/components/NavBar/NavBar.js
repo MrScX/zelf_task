@@ -22,7 +22,7 @@ const NavBar = (props) => {
 							</Link>
 						</div>
 						<div className="NavBar--left__search">
-							<SearchBar placeholder="Search photo, video, creator etc." />
+							<SearchBar placeholder="Search photo, video, creator etc." background="#F9FAFA" />
 						</div>
 					</div>
 					<div className="NavBar--right">
@@ -46,12 +46,12 @@ const NavBar = (props) => {
 
 						<div className="NavBar--right__buttons">
 							<div className="NavBar--right__buttons--item">
-								<Button text>
+								<Button text as={Link} to="/sign-in">
 									Sign In
 								</Button>
 							</div>
 							<div className="NavBar--right__buttons--item">
-								<Button primary>
+								<Button primary as={Link} to="/sign-up">
 									Join
 								</Button>
 							</div>

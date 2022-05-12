@@ -5,16 +5,32 @@ import "./Button.scss";
 const Button = (props) => {
 
 	const classes = ["Button"];
+	const componentProps = ["primary", "text"];
+	const Composition = props.as;
+	const propsCopy = {...props};
 
-	if (props.primary) {
+	if (propsCopy.primary) {
 		classes.push("Button--primary");
-	} else if (props.text) {
+	} else if (propsCopy.text) {
 		classes.push("Button--text");
+	}
+
+	// Remove Component Props For Composition
+	for (let i = 0; i < componentProps.length; i++) {
+		delete propsCopy[componentProps[i]];
 	}
 
 	return (
 		<div className={classes.join(" ")}>
-			<button>{props.children}</button>
+			{
+				Composition ?
+				<Composition {...propsCopy}>
+					{props.children}
+				</Composition> :
+				<button>
+					{props.children}
+				</button>
+			}
 		</div>
 	);
 }

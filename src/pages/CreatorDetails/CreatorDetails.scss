@@ -1,0 +1,157 @@
+.CreatorDetails {
+
+	&--header {
+		margin-top: 40px;
+	}
+
+	&--content {
+
+	}
+}
+
+.ProfileHeader {
+
+	.SocialIconsMeta {
+
+		&--item {
+			display: flex;
+			align-items: center;
+
+			&__icon__full {
+				display: none;
+				cursor: pointer;
+
+				&--link {
+					margin-left: 8px;
+
+					a {
+						text-decoration: none;
+						color: #000;
+					}
+				}
+	
+				&--followers {
+	
+					&--sub-text {
+						margin-left: 5px;
+						display: none;
+					}
+				}
+				
+				&--divider {
+					margin: 0px 12px;
+					display: flex;
+					align-items: center;
+					justify-content: center;
+					flex-direction: column;
+				}
+			}
+			
+			&__icon {
+				cursor: pointer;
+				margin-right: 8px;
+				display: flex;
+				align-items: center;
+				backface-visibility: hidden;
+
+				p {
+					margin-left: 10px;
+				}
+
+				&:hover {
+					display: none;
+				}
+
+				&:hover + .SocialIconsMeta--item__icon__full {
+					display: flex;
+					align-items: center;
+				}
+			}
+		}
+	}
+
+	.SocialTabs {
+		display: flex;
+
+		&--item {
+			display: flex;
+			align-items: center;
+			cursor: pointer;
+			
+			p {
+				font-size: 15px;
+				margin-right: 10px;
+				color: #363B4A;
+			}
+			
+			span {
+				display: inline-block;
+				color: #767B8A;
+				font-size: 13px;
+			}
+			
+			.active {
+				color: #000;
+				font-weight: 500;
+			}
+
+			&__divider {
+				color: #F1F2F3;
+				margin: 0px 15px;
+			}
+		}
+	}
+
+	.ContentMediaTabs {
+
+	}
+
+	&--main {
+		display: flex;
+		align-items: center;
+
+		&__avatar {
+
+			img {
+				display: block;
+				height: 113px;
+				width: 113px;
+				border-radius: 50%;
+				object-fit: cover;
+				margin-right: 20px;
+			}
+		}
+
+		&__title {
+
+			&--container {
+				margin-bottom: 15px;
+
+				h1 {
+					font-size: 27px;
+					font-weight: 500;
+					margin-bottom: 8px;
+				}
+
+				p {
+					color: #363B4A;
+					font-weight: 400;
+					font-size: 15px;
+					margin: 0px;
+				}
+			}
+		}
+	}
+
+	&--search {
+		margin-top: 30px;
+	}
+
+	&--social-tabs {
+		margin-top: 40px;
+	}
+}
+
+.ProfileContent {
+
+}
