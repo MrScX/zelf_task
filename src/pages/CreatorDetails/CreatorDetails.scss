@@ -11,6 +11,11 @@
 
 .ProfileHeader {
 
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+
 	.SocialIconsMeta {
 
 		&--item {
@@ -103,7 +108,12 @@
 	}
 
 	.ContentMediaTabs {
+		display: flex;
+		align-items: center;
 
+		div:first-child {
+			margin-right: 15px;
+		}
 	}
 
 	&--main {
@@ -145,10 +155,15 @@
 
 	&--search {
 		margin-top: 30px;
+		width: 50%;
 	}
 
 	&--social-tabs {
-		margin-top: 40px;
+		margin-top: 50px;
+	}
+
+	&--content-tabs {
+		margin-top: 35px;
 	}
 }
 

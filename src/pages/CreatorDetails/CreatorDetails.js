@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { useParams } from "react-router-dom";
 import { useQuery } from "react-query";
 import axios from "utils/axiosInstance";
@@ -13,6 +13,9 @@ import "./CreatorDetails.scss";
 const CreatorDetails = () => {
 
 	const { username } = useParams();
+
+	const [activeSocialTab, setActiveSocialTab] = useState("instagram");
+	const [activeContentMediaTab, setActiveContentMediaTab] = useState("reels");
 
 	const { data: creator, isLoadingCreator, isErrorCreator } = useQuery(
 		["getCreator", username],
@@ -55,17 +58,30 @@ const CreatorDetails = () => {
 		}
 	);
 
+	const onClickSocialTab = (socialTab) => {
+		setActiveSocialTab(socialTab);
+	}
+
+	const onClickContentMedia = (mediaTab) => {
+		setActiveContentMediaTab(mediaTab);
+	}
+
 	return (
 		<div className="CreatorDetails">
 			<HeaderBanner>
 				Easily license organic content from creators on all major platforms.
 			</HeaderBanner>
 
+			<div className="CreatorDetails--header">
+				<ProfileHeader 
+					activeContentMediaTab={activeContentMediaTab}
+					onClickContentMedia={onClickContentMedia}
+					activeSocialTab={activeSocialTab} 
+					onClickSocialTab={onClickSocialTab} 
+				/>
+			</div>
+
 			<Container>
-				<div className="CreatorDetails--header">
-					<ProfileHeader />
-				</div>
-				
 				<div className="CreatorDetails--content">
 					<ProfileContent />
 				</div>
