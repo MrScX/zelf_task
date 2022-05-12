@@ -5,7 +5,7 @@ import RoundButton from "components/RoundButton/RoundButton";
 
 import InstaIcon from "assets/svg_icons/InstaIcon";
 import DotIcon from "assets/svg_icons/DotIcon";
-import PlayIcon from "assets/svg_icons/PlayIcon";
+import ReelsIcon from "assets/svg_icons/ReelsIcon";
 import PostsIcon from "assets/svg_icons/PostsIcon";
 
 const SocialIconsMeta = memo((props) => {
@@ -17,14 +17,13 @@ const SocialIconsMeta = memo((props) => {
 			<div className="SocialIconsMeta--item">
 				<div className="SocialIconsMeta--item__icon">
 					<InstaIcon />
-					
 					<p>
 						{instaFollowers}
 					</p>
 				</div>
 				<div className="SocialIconsMeta--item__icon__full">
 					<InstaIcon />
-
+				
 					<div className="SocialIconsMeta--item__icon__full--link">
 						<a href="https://instagram.com/layla.gen">
 							layla.gen
@@ -121,7 +120,7 @@ const ContentMediaTabs = memo((props) => {
 					active={activeMedia === "reels"} 
 					onClick={() => { onClickContentMedia("reels") }}
 				>
-					<PlayIcon active={activeMedia === "reels"} />
+					<ReelsIcon active={activeMedia === "reels"} />
 					Reels
 				</RoundButton>
 			</div>
@@ -164,6 +163,7 @@ const ProfileHeader = (props) => {
 
 			<div className="ProfileHeader--search">
 				<SearchBar 
+					raised
 					size="large" 
 					placeholder="Search photo, video content from Layla" 
 				/>

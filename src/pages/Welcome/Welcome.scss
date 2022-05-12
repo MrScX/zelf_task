@@ -1,0 +1,17 @@
+.Welcome {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	flex-direction: column;
+	margin-top: 120px;
+	width: 100%;
+
+	&--search {
+		width: 50%;
+	}
+
+	p {
+		font-size: 18px;
+		margin-top: 15px;
+	}
+}

@@ -5,7 +5,7 @@ import "./Button.scss";
 const Button = (props) => {
 
 	const classes = ["Button"];
-	const componentProps = ["primary", "text"];
+	const componentProps = ["primary", "text", "icon"];
 	const Composition = props.as;
 	const propsCopy = {...props};
 
@@ -13,6 +13,10 @@ const Button = (props) => {
 		classes.push("Button--primary");
 	} else if (propsCopy.text) {
 		classes.push("Button--text");
+	}
+
+	if (propsCopy.icon) {
+		classes.push("icon");
 	}
 
 	// Remove Component Props For Composition
@@ -27,7 +31,7 @@ const Button = (props) => {
 				<Composition {...propsCopy}>
 					{props.children}
 				</Composition> :
-				<button>
+				<button {...propsCopy}>
 					{props.children}
 				</button>
 			}

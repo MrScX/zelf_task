@@ -9,6 +9,9 @@
 		font-weight: 500;
 		font-size: 15px;
 		font-family: "Outfit", sans-serif;
+		background: #fff;
+		padding: 10px 20px;
+		border-radius: 2px;
 	}
 
 	&--primary {
@@ -30,10 +33,25 @@
 			color: #000;
 			transition: all 0.2s;
 			color: #3354ff;
+			padding: 0px;
+			border-radius: unset;
 
 			&:hover {
 				color: darken($color: #3354ff, $amount: 5);
 			}
 		}
+	}
+}
+
+.Button.icon  {
+	
+	button {
+		padding: 12px;
+	}
+
+	i, svg, img {
+		display: block;
+		width: 100%;
+		height: 15px;
 	}
 }

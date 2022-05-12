@@ -6,6 +6,8 @@ import "./SearchBar.scss";
 
 const SearchBar = (props) => {
 
+	const { placeholder, background, raised, size } = props;
+
 	const sizes = {
 		medium: "12px 16px",
 		large: "16px 24px",
@@ -15,10 +17,11 @@ const SearchBar = (props) => {
 		<div className="SearchBar">
 			<input 
 				style={{ 
-					background: props.background ? props.background : "#fff",
-					padding: props.size ? sizes[props.size] : sizes.medium
+					background: background ? background : "#fff",
+					padding: size ? sizes[size] : sizes.medium,
+					boxShadow: raised ? "0px 20px 100px rgba(0, 0, 0, 0.05)" : "none"
 				}} 
-				placeholder={props.placeholder} 
+				placeholder={placeholder} 
 			/>
 			<div className="SearchBar--icon">
 				<SearchIcon />
