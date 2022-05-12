@@ -1,12 +1,13 @@
-import React, { Fragment, useState } from "react";
+import React, { Fragment, useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { useQuery } from "react-query";
 import axios from "utils/axiosInstance";
 
 import Container from "components/Container/Container";
 import HeaderBanner from "components/HeaderBanner/HeaderBanner";
-import ProfileHeader from "./ProfileHeader";
-import ProfileContent from "./ProfileContent";
+import ContentMessage from "./components/ContentMessage";
+import ProfileHeader from "./components/ProfileHeader";
+import ProfileContent from "./components/ProfileContent";
 
 import { monthToTextMap } from "utils/consts";
 
@@ -17,6 +18,7 @@ const CreatorDetails = () => {
 	const { username } = useParams();
 
 	const [userNotFound, setUserNotFound] = useState(false);
+	const [displayableContent, setDisplayableContent] = useState(null);
 	const [activeSocialTab, setActiveSocialTab] = useState("instagram");
 	const [activeContentMediaTab, setActiveContentMediaTab] = useState("posts");
 
@@ -65,8 +67,6 @@ const CreatorDetails = () => {
 
 				for (let i = 0; i < contentData.length; i++) {
 
-					console.log(contentData[i].content_form);
-
 					const date = new Date(contentData[i].timestamp);
 					const postedMonth = date.getMonth();
 					const postedYear = date.getFullYear();
@@ -80,7 +80,10 @@ const CreatorDetails = () => {
 					}
 				}
 
-				return updatedData;
+				return {
+					count: contentData.length,
+					content: updatedData,
+				};
 
 			} catch (err) {
 				throw new Error(err);
@@ -92,6 +95,56 @@ const CreatorDetails = () => {
 			refetchOnWindowFocus: false,
 		}
 	);
+
+	useEffect(() => {
+
+		if (creatorContent) {
+
+			let filteredContents = {...creatorContent.content};
+
+			if (activeContentMediaTab === "reels") {
+
+				const keys = Object.keys(filteredContents);
+
+				for (let i = 0; i < keys.length; i++) {
+
+					const key = keys[i];
+					const contents = filteredContents[key];
+
+					const reels = contents.filter(content => content.content_form === "VIDEO");
+					filteredContents[key] = reels;
+				}
+			}
+
+			setDisplayableContent(filteredContents);
+		}
+
+	}, [creatorContent, activeContentMediaTab]);
+
+	const handleContentSearch = (values) => {
+
+		const searchKey = values.search.toLowerCase();
+
+		let filteredContents = { ...creatorContent.content };
+
+		const keys = Object.keys(filteredContents);
+
+		for (let i = 0; i < keys.length; i++) {
+
+			const key = keys[i];
+			const contents = filteredContents[key];
+
+			const content = contents.filter(content => content.text.includes(searchKey));
+
+			if (content.length === 0) {
+				delete filteredContents[key];
+			} else {
+				filteredContents[key] = content;
+			}
+		}
+
+		setDisplayableContent(filteredContents);
+	}
 
 	const onClickSocialTab = (socialTab) => {
 		setActiveSocialTab(socialTab);
@@ -116,10 +169,12 @@ const CreatorDetails = () => {
 					<div className="CreatorDetails--header">
 						<ProfileHeader 
 							isLoading={isLoadingCreator}
+							instaMediaCount={creatorContent && creatorContent.count}
 							activeContentMediaTab={activeContentMediaTab}
 							onClickContentMedia={onClickContentMedia}
 							activeSocialTab={activeSocialTab} 
 							onClickSocialTab={onClickSocialTab} 
+							handleContentSearch={handleContentSearch}
 						/>
 					</div>
 
@@ -127,16 +182,16 @@ const CreatorDetails = () => {
 						<div className="CreatorDetails--content">
 							{
 								activeSocialTab !== "instagram" || (isErrorCreator || isErrorContent) ?
-								<p className="CreatorDetails--content__no-result">
-									{
+								<ContentMessage 
+									message={
 										(isErrorCreator || isErrorContent) ?
 										"Something went wrong. Try refreshing the page." :
 										"Sorry, no result found!"
 									}
-								</p> :
+								/> :
 								<ProfileContent 
 									isLoading={isLoadingContent}
-									creatorContent={creatorContent}
+									creatorContent={displayableContent}
 								/>
 							}
 						</div>

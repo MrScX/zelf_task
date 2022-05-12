@@ -1,6 +1,9 @@
-import React, { memo } from "react";
+import React, { memo, useEffect, useState } from "react";
+import LazyLoad from "react-lazyload";
 
 import Button from "components/Button/Button";
+import ContentMessage from "./ContentMessage";
+import Placeholder from "components/Placeholder/Placeholder";
 
 import PlayIcon from "assets/svg_icons/PlayIcon";
 import HeartIcon from "assets/svg_icons/HeartIcon";
@@ -23,8 +26,24 @@ const DateContentBlock = memo((props) => {
 			<div className="DateContentBlock--grid">
 				{
 					contents.map(content => (
-						<div className="DateContentBlock--grid__item">
-							<img src={content.content_form === "VIDEO" ? content.thumbnail_url : content.media_urls[0]} />
+						<div key={content.uuid} className="DateContentBlock--grid__item">
+							<LazyLoad
+								once
+								height={280}
+								debounce={200}
+								offset={[-100, 0]}
+								placeholder={
+									<Placeholder 
+										height="280px"
+										width="100%"
+									/>
+								}
+							>
+								<img 
+									onError={(e) => e.target.src = "https://assets.hypescout.co/admin-uploads/default-placeholder.png"} 
+									src={content.content_form === "VIDEO" ? content.thumbnail_url : content.media_urls[0]} 
+								/>
+							</LazyLoad>
 							{
 								content.content_form === "VIDEO" &&
 								<div className="DateContentBlock--grid__item--play-icon">
@@ -81,6 +100,35 @@ const ProfileContent = (props) => {
 
 	const { isLoading, creatorContent } = props;
 
+	const [isContentEmpty, setIsContentEmpty] = useState(false);
+
+	useEffect(() => {
+
+		if (creatorContent) {
+
+			let isEmpty = true;
+			const keys = Object.keys(creatorContent);
+			
+			if (keys.length === 0) {
+				isEmpty = true;
+			} else {
+	
+				for (let i = 0; i < keys.length; i++) {
+	
+					const contents = creatorContent[keys[i]];
+	
+					if (contents.length !== 0) {
+						isEmpty = false;
+						break;
+					}
+				}
+			}
+			
+			setIsContentEmpty(isEmpty);
+		}
+
+	}, [creatorContent]);
+
 	return (
 		<div className="ProfileContent">
 			{
@@ -91,6 +139,10 @@ const ProfileContent = (props) => {
 						Loading more content
 					</p>
 				</div> :
+				isContentEmpty ?
+					<ContentMessage 
+						message="Sorry, no content found!"
+					/> :
 				creatorContent &&
 				Object.keys(creatorContent).map(key => (
 					<DateContentBlock 

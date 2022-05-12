@@ -1,4 +1,5 @@
 import React, { memo } from "react";
+import { Form, Formik } from "formik";
 
 import SearchBar from "components/SearchBar/SearchBar";
 import RoundButton from "components/RoundButton/RoundButton";
@@ -54,7 +55,7 @@ const SocialTabs = memo((props) => {
 					Instagram
 				</p>
 				<span>
-					({ instaCount })
+					({ instaCount ? instaCount : "---" })
 				</span>
 				<div className="SocialTabs--item__divider">
 					|
@@ -131,10 +132,13 @@ const ContentMediaTabs = memo((props) => {
 const ProfileHeader = (props) => {
 
 	const { 
+		isLoading,
+		instaMediaCount,
 		activeSocialTab, 
 		onClickSocialTab, 
 		activeContentMediaTab, 
-		onClickContentMedia 
+		onClickContentMedia,
+		handleContentSearch
 	} = props;
 
 	return (
@@ -162,16 +166,28 @@ const ProfileHeader = (props) => {
 			</div>
 
 			<div className="ProfileHeader--search">
-				<SearchBar 
-					raised
-					size="large" 
-					placeholder="Search photo, video content from Layla" 
-				/>
+				<Formik
+					initialValues={{ search: "" }}
+					onSubmit={handleContentSearch}
+				>
+					{fr => (
+						<Form>
+							<SearchBar 
+								raised
+								size="large" 
+								placeholder="Search photo, video content from Layla" 
+								name="search"
+								onChange={fr.handleChange}
+								onBlur={fr.handleBlur}
+							/>
+						</Form>
+					)}
+				</Formik>
 			</div>
 
 			<div className="ProfileHeader--social-tabs">
 				<SocialTabs 
-					instaCount={123} 
+					instaCount={instaMediaCount} 
 					active={activeSocialTab} 
 					onClickSocialTab={onClickSocialTab} 
 				/>

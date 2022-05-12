@@ -16,14 +16,6 @@
 
 	&--content {
 		margin-top: 40px;
-
-		&__no-result {
-			text-align: center;
-			color: #363B4A;
-			opacity: 0.75;
-			font-size: 15px;
-			margin-top: 80px;
-		}
 	}
 }
 
@@ -252,8 +244,8 @@
 
 				&--overlay {
 					box-shadow: 
-						inset 0px 40px 8px -10px rgba($color: #000000, $alpha: 0.25), 
-						inset 0px -71px 8px -10px rgba($color: #000000, $alpha: 0.25); 
+						inset 0px 50px 8px -10px rgba($color: #000000, $alpha: 0.1), 
+						inset 0px -71px 8px -10px rgba($color: #000000, $alpha: 0.1); 
 					position: absolute;
 					top: 0;
 					left: 0;
@@ -305,4 +297,12 @@
 			}
 		}
 	}
+}
+
+.ContentMessage {
+	text-align: center;
+	color: #363B4A;
+	opacity: 0.75;
+	font-size: 15px;
+	margin-top: 80px;
 }

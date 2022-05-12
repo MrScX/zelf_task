@@ -1,0 +1,82 @@
+.placeholder-text {
+    height: 16px;
+    width: 100%;
+    margin: 5px auto;
+    text-align: center;
+    border-radius: 5px;
+}
+
+.placeholder-title {
+    height: 22px;
+    margin: 5px auto;
+    text-align: center;
+    border-radius: 2px;
+}
+
+.placeholder-img {
+    border-radius: 50%;
+}
+
+.placeholder-barChart {
+    height: 300px;
+    display: flex;
+    align-items: center;
+    margin-block: 20px;
+    justify-content: space-around;
+
+    &-bar {
+        height: 100%;
+        width: 16px;
+        opacity: 0.7;
+        border-radius: 10px;
+        animation: placeholderShimmer 1s linear infinite alternate;
+    }
+
+    &-bar-short {
+        height: 70%;
+        width: 16px;
+        border-radius: 10px;
+        opacity: 0.7;
+        animation: placeholderShimmer 1s linear infinite alternate;
+    }
+}
+
+.placeholder-paragraph {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: space-between;
+
+    &-line {
+        width: 100%;
+        margin: 3px 0px;
+        height: 10px;
+        border-radius: 2px;
+        opacity: 0.7;
+        animation: placeholderShimmer 1s linear infinite alternate;
+    }
+
+    &-line-short {
+        width: 70%;
+        margin: 3px 0px;
+        height: 10px;
+        border-radius: 2px;
+        opacity: 0.7;
+        animation: placeholderShimmer 1s linear infinite alternate;
+    }
+}
+
+.placeholder-container {
+    opacity: 0.7;
+    border-radius: 3px;
+    animation: placeholderShimmer 1s linear infinite alternate;
+}
+
+@keyframes placeholderShimmer {
+    0% {
+        background-color: hsl(200, 10%, 80%);
+    }
+    100% {
+        background-color: hsl(200, 20%, 95%);
+    }
+}
