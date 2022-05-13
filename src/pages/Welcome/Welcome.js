@@ -1,7 +1,5 @@
 import React from "react";
 
-import SearchBar from "components/SearchBar/SearchBar";
-
 import "./Welcome.scss";
 
 const Welcome = () => {
