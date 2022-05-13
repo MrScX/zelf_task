@@ -8,9 +8,10 @@ Very straight forward, just clone the repo, run **npm i** and then **npm start**
 
 - Lazy loaded images
 - Cached queries using **react-query**
-- Content search using text
-- Creator profile search in navbar
+- Content search using text (Hit Enter)
+- Creator profile search in navbar (Hit Enter)
 - Posts/Reels filter
 - Error handling in case of API errors
 - Responsive design following Figma design
+- Image fallbacks in case of errors
 
