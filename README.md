@@ -13,4 +13,5 @@ Very straight forward, just clone the repo, run **npm i** and then **npm start**
 - Posts/Reels filter
 - Error handling in case of API errors
 - Responsive design following Figma design
+- Image fallbacks in case of errors
 
