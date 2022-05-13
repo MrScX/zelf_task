@@ -8,9 +8,6 @@ const Welcome = () => {
 
 	return (
 		<div className="Welcome">
-			<div className="Welcome--search">
-				<SearchBar placeholder="Search for a creator" />
-			</div>
 			<p>
 				Search Above to Get Started!
 			</p>

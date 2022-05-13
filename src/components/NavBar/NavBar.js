@@ -1,5 +1,9 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import { useHistory } from "react-router-dom";
+import { Form, Formik } from "formik";
+
+import axios from "utils/axiosInstance";
 
 import Button from "components/Button/Button";
 import Container from "components/Container/Container";
@@ -9,7 +13,24 @@ import Logo from "assets/svg_icons/Logo";
 
 import "./NavBar.scss";
 
-const NavBar = (props) => {
+const NavBar = () => {
+
+	const history = useHistory();
+
+	const handleUserSearch = async (values) => {
+
+		try {
+
+			const { data } = await axios.get(`/Creator/public/?username=${values.search}`);
+
+			if (data) {
+				history.push(`/${data.username}`);
+			}
+			
+		} catch (err) {
+			console.log(err);
+		}
+	}
 
 	return (
 		<div className="NavBar--root">
@@ -22,7 +43,22 @@ const NavBar = (props) => {
 							</Link>
 						</div>
 						<div className="NavBar--left__search">
-							<SearchBar placeholder="Search photo, video, creator etc." background="#F9FAFA" />
+							<Formik
+								initialValues={{ search: "" }}
+								onSubmit={handleUserSearch}
+							>
+								{fr => (
+									<Form>
+										<SearchBar 
+											placeholder="Search for a creator" 
+											background="#F9FAFA" 
+											name="search"
+											onChange={fr.handleChange}
+											onBlur={fr.handleBlur}
+										/>
+									</Form>
+								)}
+							</Formik>
 						</div>
 					</div>
 					<div className="NavBar--right">
