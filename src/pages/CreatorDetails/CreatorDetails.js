@@ -121,7 +121,7 @@ const CreatorDetails = () => {
 
 	}, [creatorContent, activeContentMediaTab]);
 
-	const handleContentSearch = (values) => {
+	const handleContentSearch = (values, fr) => {
 
 		const searchKey = values.search.toLowerCase();
 
@@ -143,6 +143,7 @@ const CreatorDetails = () => {
 			}
 		}
 
+		fr.setSubmitting(false);
 		setDisplayableContent(filteredContents);
 	}
 
@@ -169,6 +170,7 @@ const CreatorDetails = () => {
 					<div className="CreatorDetails--header">
 						<ProfileHeader 
 							isLoading={isLoadingCreator}
+							creator={creator}
 							instaMediaCount={creatorContent && creatorContent.count}
 							activeContentMediaTab={activeContentMediaTab}
 							onClickContentMedia={onClickContentMedia}

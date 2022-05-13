@@ -8,6 +8,9 @@ import InstaIcon from "assets/svg_icons/InstaIcon";
 import DotIcon from "assets/svg_icons/DotIcon";
 import ReelsIcon from "assets/svg_icons/ReelsIcon";
 import PostsIcon from "assets/svg_icons/PostsIcon";
+import Placeholder from "components/Placeholder/Placeholder";
+
+import { formatFollower } from "utils/utils";
 
 const SocialIconsMeta = memo((props) => {
 
@@ -36,7 +39,7 @@ const SocialIconsMeta = memo((props) => {
 					</div>
 
 					<p>
-						31.2k Followers
+						{instaFollowers} Followers
 					</p>
 				</div>
 			</div>
@@ -133,6 +136,7 @@ const ProfileHeader = (props) => {
 
 	const { 
 		isLoading,
+		creator,
 		instaMediaCount,
 		activeSocialTab, 
 		onClickSocialTab, 
@@ -145,23 +149,48 @@ const ProfileHeader = (props) => {
 		<div className="ProfileHeader">
 			<div className="ProfileHeader--main">
 				<div className="ProfileHeader--main__avatar">
-					<img 
-						alt="user avatar" 
-						src="https://images.pexels.com/photos/733872/pexels-photo-733872.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2" 
-					/>
+					{
+						isLoading ?
+						<Placeholder image /> :
+						<img 
+							onError={(e) => e.target.src = "https://d33wubrfki0l68.cloudfront.net/static/media/1ce1faa35ad7a04d395bf250c21248d2aa4d24f9/pp.2fff3a92bb5afbe374c0.jpeg" }
+							alt="user avatar" 
+							src={creator.connected_accounts.instagram.profile_picture_url} 
+						/>
+					}
 				</div>
 
 				<div className="ProfileHeader--main__title">
 					<div className="ProfileHeader--main__title--container">
-						<h1>Layla Gennaro</h1>
-						<p>
-							American Fashion and Beauty Blogger
-						</p>
+						{
+							isLoading ?
+							<Placeholder title width={250} /> :
+							<h1>{creator.connected_accounts.instagram.username}</h1>
+						}
+						{
+							isLoading ?
+							<Placeholder paragraph /> :
+							<p>
+								{
+									creator.connected_accounts.instagram.text ?
+									creator.connected_accounts.instagram.text : 
+									"Content Creator"
+								}
+							</p>
+						}
 					</div>
-
-					<SocialIconsMeta 
-						instaFollowers="31.2k" 
-					/>
+					
+					{
+						isLoading ?
+						<Placeholder paragraph /> :
+						<SocialIconsMeta 
+							instaFollowers={
+								creator.connected_accounts.instagram.followers ? 
+								formatFollower(creator.connected_accounts.instagram.followers) : 
+								"---"
+							}
+						/>		
+					}
 				</div>
 			</div>
 
@@ -179,6 +208,7 @@ const ProfileHeader = (props) => {
 								name="search"
 								onChange={fr.handleChange}
 								onBlur={fr.handleBlur}
+								loading={fr.isSubmitting}
 							/>
 						</Form>
 					)}

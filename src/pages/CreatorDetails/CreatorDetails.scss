@@ -32,13 +32,8 @@
 			align-items: center;
 
 			&__icon__full {
-				display: flex;
-				align-items: center;
+				display: none;
 				cursor: pointer;
-				max-width: 0;
-				overflow-x: hidden;
-				transition: max-width 0s;
-				white-space: nowrap;
 
 				&--link {
 					margin-left: 8px;
@@ -82,7 +77,8 @@
 				}
 
 				&:hover + .SocialIconsMeta--item__icon__full {
-					max-width: fit-content;
+					display: flex;
+					align-items: center;
 				}
 			}
 		}
@@ -132,6 +128,7 @@
 	&--main {
 		display: flex;
 		align-items: center;
+		justify-content: center;
 
 		&__avatar {
 

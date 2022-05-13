@@ -1,12 +1,13 @@
 import React from "react";
 
 import SearchIcon from "assets/svg_icons/SearchIcon";
+import LoaderIcon from "assets/svg_icons/LoaderIcon";
 
 import "./SearchBar.scss";
 
 const SearchBar = (props) => {
 
-	const { placeholder, background, raised, size, name, onChange, onBlur } = props;
+	const { placeholder, background, raised, size, name, loading, onChange, onBlur } = props;
 
 	const sizes = {
 		medium: "12px 16px",
@@ -28,7 +29,11 @@ const SearchBar = (props) => {
 				onBlur={onBlur ? onBlur : null}
 			/>
 			<div className="SearchBar--icon">
-				<SearchIcon />
+				{
+					loading ?
+					<LoaderIcon /> :
+					<SearchIcon />
+				}
 			</div>
 		</div>
 	);

@@ -55,6 +55,7 @@ const NavBar = () => {
 											name="search"
 											onChange={fr.handleChange}
 											onBlur={fr.handleBlur}
+											loading={fr.isSubmitting}
 										/>
 									</Form>
 								)}
