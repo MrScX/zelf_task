@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import { useHistory } from "react-router-dom";
 import { Form, Formik } from "formik";
@@ -12,10 +12,13 @@ import SearchBar from "components/SearchBar/SearchBar";
 import Logo from "assets/svg_icons/Logo";
 
 import "./NavBar.scss";
+import MenuIcon from "assets/svg_icons/MenuIcon";
 
 const NavBar = () => {
 
 	const history = useHistory();
+
+	const [userNotFound, setUserNotFound] = useState(false);
 
 	const handleUserSearch = async (values) => {
 
@@ -29,6 +32,16 @@ const NavBar = () => {
 			
 		} catch (err) {
 			console.log(err);
+
+			if (
+				err.response && 
+				(
+					err.response.status === 404 || 
+					err.response.status === 500
+				)
+			) {
+				setUserNotFound(true);
+			}
 		}
 	}
 
@@ -37,6 +50,9 @@ const NavBar = () => {
 			<Container>
 				<nav className="NavBar">
 					<div className="NavBar--left">
+						<div className="NavBar--left__menu">
+							<MenuIcon />
+						</div>
 						<div className="NavBar--left__logo">
 							<Link to="/">
 								<Logo />
@@ -56,6 +72,8 @@ const NavBar = () => {
 											onChange={fr.handleChange}
 											onBlur={fr.handleBlur}
 											loading={fr.isSubmitting}
+											error={userNotFound}
+											errorMessage="Creator not found"
 										/>
 									</Form>
 								)}

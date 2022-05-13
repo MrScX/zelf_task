@@ -12,6 +12,13 @@
 		background: #fff;
 		padding: 10px 20px;
 		border-radius: 2px;
+
+		@media only screen and 
+		(min-device-width: 375px) and 
+		(max-device-height: 812px) and 
+		(-webkit-device-pixel-ratio: 3) {
+			padding: 10px 20px;
+		}
 	}
 
 	&--primary {
@@ -21,6 +28,13 @@
 			padding: 10px 20px;
 			border-radius: 2px;
 			transition: all 0.2s;
+
+			@media only screen and 
+			(min-device-width: 375px) and 
+			(max-device-height: 812px) and 
+			(-webkit-device-pixel-ratio: 3) {
+				padding: 8px 20px;
+			}
 
 			&:hover {
 				background: darken($color: #3354ff, $amount: 5);

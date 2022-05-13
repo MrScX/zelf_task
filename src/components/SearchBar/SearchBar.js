@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 
 import SearchIcon from "assets/svg_icons/SearchIcon";
 import LoaderIcon from "assets/svg_icons/LoaderIcon";
@@ -7,12 +7,31 @@ import "./SearchBar.scss";
 
 const SearchBar = (props) => {
 
-	const { placeholder, background, raised, size, name, loading, onChange, onBlur } = props;
+	const { 
+		placeholder, 
+		background, 
+		raised, 
+		size, 
+		name, 
+		loading, 
+		error, 
+		errorMessage, 
+		onChange, 
+		onBlur 
+	} = props;
 
 	const sizes = {
 		medium: "12px 16px",
 		large: "16px 24px",
 	};
+
+	const [displayError, setDisplayError] = useState(false);
+
+	useEffect(() => {
+		if (error) {
+			setDisplayError(true);
+		}
+	}, [error]);
 
 	return (
 		<div className="SearchBar">
@@ -35,6 +54,12 @@ const SearchBar = (props) => {
 					<SearchIcon />
 				}
 			</div>
+			{
+				displayError &&
+				<div className="SearchBar--msg" onClick={() => setDisplayError(false)}>
+					{errorMessage}
+				</div>
+			}
 		</div>
 	);
 }

@@ -23,13 +23,15 @@ const CreatorDetails = () => {
 	const [activeContentMediaTab, setActiveContentMediaTab] = useState("posts");
 
 	const { data: creator, isLoading: isLoadingCreator, isError: isErrorCreator } = useQuery(
-		["getCreator", username, activeSocialTab],
+		["getCreator", username],
 		async (_) => {
 
 			try {
 
 				const { data } = await axios.get(`/Creator/public/?username=${username}`);
 
+				setActiveSocialTab("instagram");
+				
 				return data;
 
 			} catch (err) {
@@ -48,7 +50,7 @@ const CreatorDetails = () => {
 			}
 		},
 		{
-			enabled: (!!username && activeSocialTab === "instagram"),
+			enabled: !!username,
 			retry: false,
 			refetchOnWindowFocus: false,
 		}

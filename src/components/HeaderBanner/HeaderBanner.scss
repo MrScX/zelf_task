@@ -3,7 +3,14 @@
 	text-align: center;
 	padding: 16px;
 	border: 1px solid #DCECFB;
-	
+
+	@media only screen and 
+	(min-device-width: 375px) and 
+	(max-device-height: 812px) and 
+	(-webkit-device-pixel-ratio: 3) {
+		padding: 10px;
+	}
+
 	p {
 		font-weight: 500;
 		font-size: 15px;

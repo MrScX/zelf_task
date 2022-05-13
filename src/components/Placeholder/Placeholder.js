@@ -4,7 +4,7 @@ import "./Placeholder.scss";
 
 const Placeholder = (props) => {
 
-    const { image, title, paragraph, height, width } = props;
+    const { image, imageCircular, title, paragraph, height, width } = props;
 
     if (paragraph) {
 
@@ -36,6 +36,8 @@ const Placeholder = (props) => {
             {
                 image ?
                     <div className="placeholder-img" /> :
+				imageCircular ?
+					<div className="placeholder-img-circular" /> :
                 title ?
                     <div className="placeholder-title" /> :
                     <div className="placeholder-text" />

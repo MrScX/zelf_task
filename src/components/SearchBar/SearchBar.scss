@@ -1,6 +1,5 @@
 .SearchBar {
 	position: relative;
-	margin-left: 20px;
 
 	&--icon {
 		display: flex;
@@ -12,6 +11,24 @@
 		top: 0;
 		bottom: 0;
 		right: 15px;
+	}
+
+	&--msg {
+		cursor: pointer;
+		display: flex;
+		justify-content: center;
+		align-items: center;
+		flex-direction: column;
+		position: absolute;
+		left: 0;
+		top: 50px;
+		right: 15px;
+		background: #F9E79F;
+		color: #333;
+		width: 100%;
+		border-radius: 3px;
+		padding: 10px;
+		font-weight: 500;
 	}
 
 	input {

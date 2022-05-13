@@ -150,12 +150,11 @@ const ProfileHeader = (props) => {
 			<div className="ProfileHeader--main">
 				<div className="ProfileHeader--main__avatar">
 					{
-						isLoading ?
-						<Placeholder image /> :
+						!isLoading &&
 						<img 
 							onError={(e) => e.target.src = "https://d33wubrfki0l68.cloudfront.net/static/media/1ce1faa35ad7a04d395bf250c21248d2aa4d24f9/pp.2fff3a92bb5afbe374c0.jpeg" }
 							alt="user avatar" 
-							src={creator.connected_accounts.instagram.profile_picture_url} 
+							src={creator.connected_accounts.instagram.profile_picture_url}
 						/>
 					}
 				</div>

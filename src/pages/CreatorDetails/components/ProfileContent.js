@@ -42,6 +42,7 @@ const DateContentBlock = memo((props) => {
 								<img 
 									onError={(e) => e.target.src = "https://assets.hypescout.co/admin-uploads/default-placeholder.png"} 
 									src={content.content_form === "VIDEO" ? content.thumbnail_url : content.media_urls[0]} 
+									alt="instagram media"
 								/>
 							</LazyLoad>
 							{
