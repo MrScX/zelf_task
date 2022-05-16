@@ -136,7 +136,9 @@ const CreatorDetails = () => {
 			const key = keys[i];
 			const contents = filteredContents[key];
 
-			const content = contents.filter(content => content.text.includes(searchKey));
+			const content = contents.filter(content => content.text.toLowerCase().includes(searchKey));
+
+			console.log(content);
 
 			if (content.length === 0) {
 				delete filteredContents[key];
